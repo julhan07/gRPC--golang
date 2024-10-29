@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package product;
+option go_package = "grpcservices/product_service/proto";
+
+service ProductService {
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse);
+  rpc GetUserProducts(GetUserProductsRequest) returns (GetUserProductsResponse);
+}
+
+message GetProductRequest {
+  string product_id = 1;
+}
+
+message GetProductResponse {
+  string product_id = 1;
+  string name = 2;
+  double price = 3;
+  string user_id = 4;  // Pastikan field name sesuai
+}
+
+message GetUserProductsRequest {
+  string user_id = 1;
+}
+
+message GetUserProductsResponse {
+  repeated GetProductResponse products = 1;
+}
